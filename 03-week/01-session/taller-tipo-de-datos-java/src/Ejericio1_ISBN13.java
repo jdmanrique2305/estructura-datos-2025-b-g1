@@ -1,4 +1,4 @@
-public class Ejecicio1_ISBN13 {
+public class Ejericio1_ISBN13 {
    public static boolean isValidISBN13(String isbn) {
     if (isbn == null || isbn.length() != 13) return false; 
     int suma = 0;
