@@ -1,6 +1,6 @@
 public class Ejercicio2_RLE {
     public static void main(String[] args) {
-        String input = "aaabbccccd";
+        String input = "aaaaabbccccd";
 
     String compressed = compress(input);
     double ratio = (input.isEmpty()) ? 0 : (double) compressed.length() / input.length();
