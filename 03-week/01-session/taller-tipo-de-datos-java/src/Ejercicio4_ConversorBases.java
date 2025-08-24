@@ -1,6 +1,7 @@
 import java.math.BigInteger;
+
 public class Ejercicio4_ConversorBases {
-    
+
     public static void convertir(String numero, int baseOrigen) {
         numero = numero.toUpperCase();
 
@@ -19,7 +20,6 @@ public class Ejercicio4_ConversorBases {
             valorBig = new BigInteger(numero, baseOrigen);
             usoBigInteger = true;
         }
-
         if (!usoBigInteger) {
             if (baseOrigen != 10) {
                 System.out.println("Decimal: " + valorLong);
@@ -41,7 +41,6 @@ public class Ejercicio4_ConversorBases {
                 System.out.println("Hexadecimal: " + valorBig.toString(16).toUpperCase());
             }
         }
-
         System.out.println("¿Usó BigInteger? " + usoBigInteger);
     }
 
@@ -56,5 +55,12 @@ public class Ejercicio4_ConversorBases {
         }
         return true;
     }
-}
 
+    public static void main(String[] args) {
+        convertir("1F4", 16);   
+        System.out.println("----");
+        convertir("101010", 2); 
+        System.out.println("----");
+        convertir("123456789123456789123456789", 10);
+    }
+}
