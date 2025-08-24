@@ -36,7 +36,7 @@ public class Ejercicio5_Tiempos {
                 idxMax = i;
             }
         }
-        System.out.println("Tramo más largo: " + aHHMMSS(max) + " (índice " + idxMax + ")");
+        System.out.println("Tramo más largo: " + aHHMMSS(max) );
 
         System.out.println("Porcentajes:");
         for (int i = 0; i < segs.length; i++) {
