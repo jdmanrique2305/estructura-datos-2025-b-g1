@@ -2,6 +2,10 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Scanner;
 
+// Clase Libro
+// Representa cada libro del catálogo.
+// Se usa dentro de un array fijo porque el catálogo
+// tiene tamaño limitado y el acceso por índice es directo.
 
 class Libro {
     int codigo;
@@ -19,6 +23,9 @@ class Libro {
     }
 }
 
+// Clase Prestamo
+// Se usa en una lista enlazada simple porque las inserciones
+// y eliminaciones de préstamos activos son frecuentes.
 
 class Prestamo {
     int codigoLibro;
@@ -34,6 +41,9 @@ class Prestamo {
     }
 }
 
+// Nodo de lista simple
+// Estructura dinámica para la lista de préstamos activos.
+// Complejidad de inserción: O(1) si agrego al inicio.
 
 class NodoPrestamo {
     Prestamo dato;
@@ -45,6 +55,8 @@ class NodoPrestamo {
     }
 }
 
+// Clase Operacion
+// Cada acción (ALTA, BAJA, PRESTAMO, DEVOLUCION) se guarda en el historial.
 
 class Operacion {
     String tipo; 
@@ -58,6 +70,10 @@ class Operacion {
     }
 }
 
+// Nodo de lista doble
+// Estructura dinámica para historial de operaciones.
+// Permite recorrer hacia adelante y hacia atrás.
+// Inserción: O(1).
 
 class NodoHistorial {
     Operacion dato;
@@ -70,25 +86,32 @@ class NodoHistorial {
     }
 }
 
+// Clase principal
+// Integra arrays, listas enlazadas y programación estructurada.
+// Menú principal con while + switch.
 
 public class Biblioteca {
  
-    static final int MAX_LIBROS = 100;
-    static final int NUM_SUCURSALES = 3;
+    static final int MAX_LIBROS = 100;  // tamaño fijo de catálogo
+    static final int NUM_SUCURSALES = 3;  // matriz disponibilidad
 
-    static Libro[] catalogo = new Libro[MAX_LIBROS];
-    static int[][] disponibilidad = new int[MAX_LIBROS][NUM_SUCURSALES];
+    static Libro[] catalogo = new Libro[MAX_LIBROS]; // array 1D
+    static int[][] disponibilidad = new int[MAX_LIBROS][NUM_SUCURSALES];  // matriz 2D
     static int numLibros = 0;
 
-   
-    static NodoPrestamo prestamosActivos = null;  
-    static NodoHistorial historial = null;        
+    // Listas dinámicas
+
+    static NodoPrestamo prestamosActivos = null;   // lista simple
+    static NodoHistorial historial = null;        // lista doble
 
     static Scanner sc = new Scanner(System.in);
 
+ // Métodos de catálogo (array)
+
+ // Alta de libro: inserción en array si hay espacio.
 
     static void cargarLibro() {
-        if (numLibros >= MAX_LIBROS) {
+        if (numLibros >= MAX_LIBROS) { 
             System.out.println("No hay espacio para más libros.");
             return;
         }
@@ -107,6 +130,8 @@ public class Biblioteca {
         agregarHistorial("ALTA", "Libro " + titulo + " agregado");
     }
 
+     // Baja lógica: no se elimina físicamente, solo se marca inactivo.
+
     static void eliminarLibro() {
         System.out.print("Código a eliminar: ");
         int codigo = sc.nextInt();
@@ -121,6 +146,8 @@ public class Biblioteca {
         System.out.println("Libro no encontrado.");
     }
 
+  // Búsqueda lineal por título
+
     static void buscarLibroPorTitulo() {
         System.out.print("Título: ");
         sc.nextLine();
@@ -134,7 +161,8 @@ public class Biblioteca {
         System.out.println("No encontrado.");
     }
 
- 
+   // Métodos de préstamos 
+
     static void prestarLibro() {
         System.out.print("Usuario: ");
         sc.nextLine();
@@ -158,7 +186,7 @@ public class Biblioteca {
             return;
         }
 
-        libro.stock--;
+        libro.stock--; // actualizar stock
         Prestamo p = new Prestamo(codigo, usuario);
         NodoPrestamo nuevo = new NodoPrestamo(p);
         nuevo.sig = prestamosActivos;
@@ -176,7 +204,8 @@ public class Biblioteca {
         while (actual != null) {
             if (actual.dato.codigoLibro == codigo && !actual.dato.devuelto) {
                 actual.dato.devuelto = true;
-               
+
+                // devolver libro al catálogo
                 for (int i = 0; i < numLibros; i++) {
                     if (catalogo[i] != null && catalogo[i].codigo == codigo) {
                         catalogo[i].stock++;
@@ -184,6 +213,8 @@ public class Biblioteca {
                     }
                 }
            
+                // quitar nodo de la lista
+
                 if (anterior == null) prestamosActivos = actual.sig;
                 else anterior.sig = actual.sig;
 
@@ -207,6 +238,7 @@ public class Biblioteca {
         }
     }
 
+    // Métodos de historial
 
     static void agregarHistorial(String tipo, String detalle) {
         Operacion op = new Operacion(tipo, detalle);
@@ -227,12 +259,13 @@ public class Biblioteca {
             System.out.println("Historial vacío.");
             return;
         }
-        while (actual.ant != null) actual = actual.ant; 
+        while (actual.ant != null) actual = actual.ant;  
         while (actual != null) {
             System.out.println(actual.dato.tipo + " - " + actual.dato.detalle + " (" + actual.dato.fechaHora + ")");
             actual = actual.sig;
         }
     }
+
 
     static void listarHistorialAtras() {
         NodoHistorial actual = historial;
@@ -246,6 +279,8 @@ public class Biblioteca {
         }
     }
 
+             // Menú principal
+             // Usa while + switch → programación estructurada.
     public static void main(String[] args) {
         while (true) {
             System.out.println("\n===== Biblioteca =====");
