@@ -20,4 +20,5 @@ public class ejercicio3 {
         System.out.println("\nLista después de eliminaciones:");
         lista.mostrarLista();  // 20 -> 30 -> 50 -> null
     }
+
 }
