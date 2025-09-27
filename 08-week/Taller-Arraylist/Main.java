@@ -4,7 +4,6 @@ public class Main {
     public static void main(String[] args) {
         ArrayList<Object> figuras = new ArrayList<>();
 
-        // Agregar al menos dos objetos de cada clase
         figuras.add(new Circulo(4, "Verde"));
        
 
@@ -14,7 +13,6 @@ public class Main {
         figuras.add(new Triangulo(3, 4, 5, "Naranja"));
         
 
-        // Recorrer e imprimir información
         for (Object f : figuras) {
             if (f instanceof Circulo) {
                 ((Circulo) f).mostrarInformacion();
