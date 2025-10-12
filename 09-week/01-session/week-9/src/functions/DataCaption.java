@@ -23,9 +23,10 @@ public class DataCaption {
     }
 
     public String CaptionString(){
-        Scanner scanner = new Scanner(System.in);
         System.out.print(this.getMessage());
-        this.setData(scanner.nextLine());
+        try (Scanner scanner = new Scanner(System.in)) {
+            this.setData(scanner.nextLine());
+        }
         return this.getData();
     }
 }

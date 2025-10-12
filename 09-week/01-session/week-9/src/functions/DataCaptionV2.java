@@ -4,6 +4,7 @@ import java.util.Scanner;
 
 public class DataCaptionV2 {
     String data;
+    private static final Scanner SCANNER = new Scanner(System.in);
     public String getData() {
         return data;
     }
@@ -11,11 +12,10 @@ public class DataCaptionV2 {
     public void setData(String data) {
         this.data = data;
     }
-
     public String CaptionString(String message){
-        Scanner scanner = new Scanner(System.in);
         System.out.print(message);
-        this.setData(scanner.nextLine());
+        this.setData(SCANNER.nextLine());
         return this.getData();
     }
-}
+    }
+

@@ -2,8 +2,6 @@ package type;
 
 import functions.DataCaptionV2;
 
-import java.util.Scanner;
-
 public class TypeWhileV2 {
     public static void main(String[] args) {
         // Validar si una persona es mayor o menor de edad.

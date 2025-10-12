@@ -11,8 +11,7 @@ public class TypeWhile {
         Integer age;
         Boolean control;
         //Crear scaner
-        Scanner scanner = new Scanner(System.in);
-
+        try (Scanner scanner = new Scanner(System.in)) {
 
         // Varificar si la persona es mayor o menor de edad.
         control = true;
@@ -35,6 +34,7 @@ public class TypeWhile {
             } else {
                 System.out.println("Edad no permitida para el programa,  "+namePerson+" ingresa de nuevo tús datos");
             }
+        }
         }
 
 

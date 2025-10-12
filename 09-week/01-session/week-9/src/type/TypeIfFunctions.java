@@ -2,8 +2,6 @@ package type;
 
 import functions.DataCaption;
 
-import java.util.Scanner;
-
 public class TypeIfFunctions {
     public static void main(String[] args) {
         // Validar si una persona es mayor o menor de edad.
