@@ -1,6 +1,3 @@
-// Importamos las clases necesarias del paquete java.util
-// ArrayList: para manejar listas dinámicas de productos
-// Scanner: para leer datos que ingresa el usuario por consola
 import java.util.ArrayList;
 import java.util.Scanner;
 

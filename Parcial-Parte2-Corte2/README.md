@@ -28,4 +28,5 @@
 - Ingrese el nombre del producto: Laptop
 - Producto agregado correctamente.
 
-## Link del video
+## Video demostrativo
+- https://drive.google.com/file/d/1zKQW4LG99GwqR6l49SqC0ST02ZGeshJ6/view?usp=sharing
